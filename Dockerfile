@@ -59,7 +59,7 @@ RUN mkdir -p /go/src/github.com/go-acme && \
 #
 FROM base
 
-RUN apk add --no-cache ca-certificates git openssh-client openssl tini
+RUN apk add --no-cache ca-certificates curl git openssh-client openssl tini
 
 COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
