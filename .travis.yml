@@ -28,9 +28,9 @@ jobs:
     - stage: Deploy release
       script:
         - export VERSION_PATCH="lego-${TRAVIS_TAG#v}"
-        - export VERSION_MINOR="${VERSION_PATCH%.*}
-        - export VERSION_MAJOR="${VERSION_MINOR%.*}
-        - export VERSION_FLAVOR="${VERSION_MAJOR%-*}
+        - export VERSION_MINOR="${VERSION_PATCH%.*}"
+        - export VERSION_MAJOR="${VERSION_MINOR%.*}"
+        - export VERSION_FLAVOR="${VERSION_MAJOR%-*}"
         - docker build --tag "$IMAGE_NAME:$VERSION_PATCH" --tag "$IMAGE_NAME:$VERSION_MINOR" --tag "$IMAGE_NAME:$VERSION_MAJOR" --tag "$IMAGE_NAME:$VERSION_FLAVOR"
         - docker push "$IMAGE_NAME:VERSION_PATCH"
         - docker push "$IMAGE_NAME:VERSION_MINOR"
