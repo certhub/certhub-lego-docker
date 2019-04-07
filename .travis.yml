@@ -11,7 +11,7 @@ stages:
   - name: Deploy rolling
     if: branch = master
   - name: Deploy release
-    if: branch = latest AND tag IS present
+    if: tag IS present
 
 before_script:
   - docker --version
