@@ -1,4 +1,4 @@
-ARG alpine_version=edge
+ARG alpine_version=3.9.2
 
 FROM alpine:${alpine_version} as base
 RUN apk update && apk upgrade
@@ -12,7 +12,7 @@ RUN apk add --no-cache make
 
 RUN mkdir /src /dist
 
-ARG gitgau_ref=master
+ARG gitgau_ref=v1.1.0
 ENV gitgau_ref ${gitgau_ref}
 
 ADD "https://codeload.github.com/znerol/git-gau/tar.gz/${gitgau_ref}" /src/git-gau-src.tar.gz
@@ -28,7 +28,7 @@ RUN apk add --no-cache make
 
 RUN mkdir /src /dist
 
-ARG certhub_ref=master
+ARG certhub_ref=v1.0.0-beta5
 ENV certhub_ref ${certhub_ref}
 
 ADD "https://codeload.github.com/certhub/certhub/tar.gz/${certhub_ref}" /src/certhub-src.tar.gz
@@ -44,7 +44,7 @@ RUN apk add --no-cache make musl-dev git go
 
 RUN mkdir /src /dist
 
-ARG lego_ref=master
+ARG lego_ref=v2.4.0
 ENV lego_ref ${lego_ref}
 
 ENV GOPATH /go
