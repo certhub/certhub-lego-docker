@@ -61,6 +61,8 @@ jobs:
         script:
           - nvm install lts/*
           - npx semantic-release
+        on:
+          branch: latest
 
     - stage: Dockerhub release
       script:
