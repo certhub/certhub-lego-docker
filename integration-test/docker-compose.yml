@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+    sut:
+        working_dir: /etc/certhub
+        volumes:
+          - config:/etc/certhub
+          - ./test:/test
+
+    config:
+        build:
+            context: ./config
+        volumes:
+          - config:/etc/certhub
+
+volumes:
+    config:
