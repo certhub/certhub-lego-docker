@@ -58,6 +58,7 @@ jobs:
     - stage: Github release
       deploy:
         provider: script
+        deploy.skip_cleanup: true
         script:
           - nvm install lts/*
           - npx semantic-release
