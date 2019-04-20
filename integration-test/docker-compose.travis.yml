@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
     sut:
-        image: "${IMAGE_NAME}:${IMAGE_VARIANT}-travis-build-${TRAVIS_BUILD_ID}"
+        image: "${IMAGE_NAME}:${IMAGE_BUILD_ID}"
         environment:
           - "CERTHUB_MESSAGE_SUBJECT_ACTION=Issue/renew by Travis CI Run [#${TRAVIS_BUILD_NUMBER}](${TRAVIS_BUILD_WEB_URL})"
           - "CERTHUB_CERT_PATH={WORKDIR}/${IMAGE_VARIANT}-docker-test.fullchain.pem"
