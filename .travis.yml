@@ -11,7 +11,7 @@ env:
 stages:
   - name: Build
   - name: Tag rolling
-    if: branch = master
+    if: branch = master AND type = push
   - name: Tag release
     if: tag IS present
 
