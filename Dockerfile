@@ -80,7 +80,7 @@ RUN install -m 0644 -D /src/README.md /dist-etc/motd && \
 #
 FROM base
 
-RUN apk add --no-cache ca-certificates curl git openssh-client openssl tini
+RUN apk add --no-cache ca-certificates curl git openssh-client openssl tini tzdata
 
 COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
