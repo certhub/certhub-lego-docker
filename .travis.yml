@@ -10,6 +10,7 @@ env:
 
 stages:
   - name: Build
+  - name: Integration test
   - name: Tag rolling
     if: branch = master AND type = push
   - name: Tag release
@@ -25,6 +26,22 @@ jobs:
       script:
         - docker build --tag "${IMAGE_NAME}:${IMAGE_VARIANT}-travis-build-${TRAVIS_BUILD_ID}" .
         - docker push "${IMAGE_NAME}:${IMAGE_VARIANT}-travis-build-${TRAVIS_BUILD_ID}"
+
+    - stage: Integration test
+      env:
+        - DOCKER_COMPOSE_ARGS: >
+            "
+            -f integration-test/docker-compose.yml
+            -f integration-test/docker-compose.travis.yml
+            -f integration-test/docker-compose.test-${IMAGE_VARIANT}.travis.yml
+            "
+        # travis encrypt PRIVATE_SSH_KEY=$(printf %q "$(</path/to/ssh/private.key)")
+        - secure: "JoOh62PL7HN0hZbM8S5fBP2RBnRNxxVGx7qeb1mJR9Ees2YqdyuAO7a+bTD+z6ZZJGfKRCrH1tiBE9rXzc4Gy7tGfPPniTqmIBPwSGSCDWQdwFePuTUo07oy+/Gywn+40PgSU7dMGuMx9jckeKXci5g5vAYzE4ixMVq6HsujDZLqRF/HWFvNFqwBA1WmtX+7u6MDzDntNYSusKt0GLo9JexnctTD7GYL3O+FDMP6jYptasAJnHRKaB+LqxxlrrdbizZpO0BrXvS4GXgTpuJPEZIp9S/pdqfYL6opcjAcJbmOJU3yA1vzo1SWMRcsB5q8BPeyix73JFutwrjOuDpiaGf7UqFskbVEgRGJd9anw0OIVXTvgBdYjYPZPvMX4tI1i96h5UhJa+TYedROVMeTFcGNNZZ300mtszg/ZJ3dFIGTBXa0U1aP4IOTxfqAcfgWZd4+g7JeTc4w3ZQQ4FWx5zEDQC6FL1Z4WChCSEUyHpyw7/TlzjrnWqeI8kqKQ1EMmw0p7xFWkhNXNoZEkH2LFG20EvdAY3nB+8EWSWZWwXUOEadFiP/DICkTecqMIKz0yRuLHc9RlAyPB+PblHRmY7oMm3Fmn6emG3qX3+NOiqGJYMQNxP7MbA1dRBBQjy+sgIq7kafSVR9RdFMa9LXsGDyTV+pob2iw0i44mqDQIO8="
+        # travis encrypt PRIVATE_DIGITALOCEAN_TOKEN=abcdefg[...]
+        - secure: "J6sPFbhw+XV0yWergsSCzfkzPQK6jd5iz+q0kihdaDJ4fwe2+FyEqwUUpjvJpKjTLsY/8LCuizY3KtH4MGR3gSgL2ByxGbzmMOhbLy3mqn1USwG47Zw9h4LCIZ8yXhelxj8GAvtfsUAVjuZW7QmqtmkUYXYtji46xChxdTNl6/WA5TpKvgpoMh2QI/yoOB5IcP1mbX0qaG03XL4Wit9YfP9tDp/tXQk5qcYyqvZT+cL3y82WGLCwbRNG6M6e3kzs+YXoUYQqgkRAHmmJk6Ph+ZOOyZxDia1BsrihBfr6kcRUU16kiJ9BhaLcalayUms2pV9SSN6dMBiiwsgJ3bJtfKc438lHByDEGRjiWafVzs3yirwcViVqtMAg1Wr7CGfEhZjBn2QWIkVvWUBRtPiV0nTW86/AMy66fySEyApdx8Vx9Bg0jIiDLEI0akYmBM+m10ipF/E00iW3gTuaaP7qZa6zm1dk+VablgoD+XiV26hfVcAQne59PmeAT9KZPo9pnEfT2LpceI6eCZ3GzT5+DD0+v1ckzo2mQ2dxfxVKfYKrRm0JdA/aR1SnTMEbnsB2C9d9ZxTH8kmkQZipy9u4Wp4OXkBRy8sNB55V4uYxHItHqPyCGJUFSMTmMfANqjV2qLtmvDbV6OQajhcyjo6q36czL5E2C0s6sliVMcNxEjY="
+      script:
+        - docker-compose ${DOCKER_COMPOSE_ARGS} build
+        - docker-compose ${DOCKER_COMPOSE_ARGS} run sut
 
     - stage: Tag rolling
       script:
