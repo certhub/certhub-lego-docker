@@ -56,14 +56,9 @@ jobs:
         - docker push "${IMAGE_NAME}:${IMAGE_VARIANT}-rolling"
 
     - stage: Github release
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - nvm install lts/*
-          - npx semantic-release
-        on:
-          branch: latest
+      script:
+        - nvm install lts/*
+        - npx semantic-release
 
     - stage: Dockerhub release
       script:
