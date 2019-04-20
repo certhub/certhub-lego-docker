@@ -15,7 +15,6 @@ services:
           - "GIT_COMMITTER_EMAIL=travis-ci@certhub.io"
 
     config:
-        build:
-            args:
-                csr_path: "/etc/certhub/${IMAGE_VARIANT}-docker-test.csr.pem"
-                common_name: "${IMAGE_VARIANT}-docker-test--travis-build-${TRAVIS_BUILD_ID:-XXXX}.ci.certhub.io"
+        environment:
+          - "CONFIG_CSR_PATH=${IMAGE_VARIANT}-docker-test.csr.pem"
+          - "CONFIG_CERT_CN=${IMAGE_VARIANT}-docker-test--travis-build-${TRAVIS_BUILD_ID}.ci.certhub.io"
