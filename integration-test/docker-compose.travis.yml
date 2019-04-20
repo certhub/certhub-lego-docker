@@ -4,6 +4,7 @@ services:
     sut:
         image: "${IMAGE_NAME}:${IMAGE_VARIANT}-travis-build-${TRAVIS_BUILD_ID}"
         environment:
+          - "CERTHUB_MESSAGE_SUBJECT_ACTION=Issue/renew by Travis CI Run [#${TRAVIS_BUILD_NUMBER}](${TRAVIS_BUILD_WEB_URL})"
           - "CERTHUB_CERT_PATH={WORKDIR}/${IMAGE_VARIANT}-docker-test.fullchain.pem"
           - "CERTHUB_CSR_PATH=${IMAGE_VARIANT}-docker-test.csr.pem"
           - "GAU_REPO=git@github.com:certhub/certhub-scratch-certs.git"
