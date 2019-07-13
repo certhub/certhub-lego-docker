@@ -12,6 +12,27 @@ services:
             --dns digitalocean
           DO_AUTH_TOKEN: >-
             ${PRIVATE_DIGITALOCEAN_TOKEN}
+          # Account setup via certhub-docker-entry script
+          # https://certhub.readthedocs.io/en/latest/certhub-docker-entry.8.html#environment-lego
+          CERTHUB_LEGO_ACCOUNT_CONF: |
+            {
+               "registration" : {
+                  "body" : {
+                     "status" : "valid",
+                     "contact" : [
+                        "mailto:travis-ci@certhub.io"
+                     ]
+                  },
+                  "uri" : "https://acme-staging-v02.api.letsencrypt.org/acme/acct/10022777"
+               },
+               "email" : "travis-ci@certhub.io"
+            }
+          CERTHUB_LEGO_ACCOUNT_EMAIL: >-
+            travis-ci@certhub.io
+          CERTHUB_LEGO_ACCOUNT_SERVER: >-
+            https://acme-staging-v02.api.letsencrypt.org/directory
+          CERTHUB_LEGO_ACCOUNT_KEY: >-
+            ${PRIVATE_LEGO_ACCOUNT_KEY}
 
     config:
         command: /test/config-setup-lego.sh
