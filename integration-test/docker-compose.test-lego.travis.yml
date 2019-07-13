@@ -7,7 +7,7 @@ services:
           CERTHUB_LEGO_ARGS: >-
             --accept-tos
             --email travis-ci@certhub.io
-            --server https://acme-staging-v02.api.letsencrypt.org/directory"
+            --server https://acme-staging-v02.api.letsencrypt.org/directory
           CERTHUB_LEGO_CHALLENGE_ARGS: >-
             --dns digitalocean
           DO_AUTH_TOKEN: >-
