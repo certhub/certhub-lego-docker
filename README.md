@@ -29,4 +29,4 @@ Manifest
 * alpine: 3.11.6
 * certhub: v1.0.0
 * git-gau: v1.1.0
-* lego: v3.6.0
+* lego: v3.7.0
