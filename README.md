@@ -1,7 +1,7 @@
 Official Certhub/Lego Docker Image
 ==================================
 
-[![Build Status](https://travis-ci.org/certhub/certhub-lego-docker.svg?branch=master)](https://travis-ci.org/certhub/certhub-lego-docker)
+[![Build Status](https://travis-ci.org/certhub/certhub-lego-docker.svg?branch=develop)](https://travis-ci.org/certhub/certhub-lego-docker)
 
 
                             .oO'Oo.       .oO'Oo.
@@ -27,6 +27,6 @@ Manifest
 --------
 
 * alpine: edge
-* certhub: master
-* git-gau: master
+* certhub: develop
+* git-gau: develop
 * lego: master
