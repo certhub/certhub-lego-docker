@@ -1,5 +1,6 @@
 ---
 os: linux
+dist: focal
 language: shell
 services: docker
 
@@ -24,7 +25,7 @@ stages:
   - name: Build
   - name: Integration test
   - name: Dockerhub rolling
-    if: branch = master AND type IN (push, cron)
+    if: branch = develop AND type IN (push, cron)
   - name: Github release
     if: branch = latest AND type = push
   - name: Dockerhub release
