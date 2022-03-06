@@ -44,7 +44,7 @@ RUN apk add --no-cache make musl-dev git go
 
 RUN mkdir /src /dist
 
-ARG lego_ref=v4.4.0
+ARG lego_ref=v4.6.0
 ENV lego_ref ${lego_ref}
 
 ENV GOPATH /go
