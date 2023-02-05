@@ -26,7 +26,7 @@ Official Certhub/Lego Docker Image
 Manifest
 --------
 
-* alpine: 3.16.2
+* alpine: 3.17.1
 * certhub: v1.1.0
 * git-gau: v1.1.0
 * lego: v4.9.1
