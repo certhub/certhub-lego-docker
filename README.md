@@ -1,7 +1,7 @@
 Official Certhub/Lego Docker Image
 ==================================
 
-[![Build Status](https://travis-ci.org/certhub/certhub-lego-docker.svg?branch=develop)](https://travis-ci.org/certhub/certhub-lego-docker)
+[![Build Status](https://github.com/certhub/certhub-lego-docker/actions/workflows/on-push-latest.yml/badge.svg?branch=latest)](https://github.com/certhub/certhub-lego-docker/actions/workflows/on-push-latest.yml)
 
 
                             .oO'Oo.       .oO'Oo.
