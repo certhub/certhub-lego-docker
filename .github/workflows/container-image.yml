@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/arm64,linux/amd64
+          platforms: linux/amd64${{ github.event_name != 'pull_request' && ', linux/arm64' || '' }}
           tags: "${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-gh-build-${{ github.run_id }}"
           build-args: |
             build_log_label=GH Build #${{ github.run_number }}
