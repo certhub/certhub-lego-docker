@@ -27,6 +27,6 @@ Manifest
 --------
 
 * alpine: edge
-* certhub: develop
+* certhub: main
 * git-gau: develop
 * lego: master
